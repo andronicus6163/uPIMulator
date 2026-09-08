@@ -12,9 +12,10 @@ RUN apt install -y python3
 RUN apt install -y python3-pip
 
 # UPMEM SDK
+# NOTE: sdk-releases.upmem.com is defunct (UPMEM domain no longer resolves).
+# The DPU-target clang is instead built from https://github.com/upmem/llvm-project
+# branch rel_2023.2 and copied in here. See ../../../.toolchains/.
 WORKDIR /root
-RUN wget sdk-releases.upmem.com/2023.2.0/ubuntu_22.04/upmem-2023.2.0-Linux-x86_64.tar.gz
-RUN tar -zxvf upmem-2023.2.0-Linux-x86_64.tar.gz
-RUN echo "source /root/upmem-2023.2.0-Linux-x86_64/upmem_env.sh" > /root/.bashrc
+COPY upmem-2023.2.0-Linux-x86_64 /root/upmem-2023.2.0-Linux-x86_64
 
 WORKDIR /root/uPIMulator
